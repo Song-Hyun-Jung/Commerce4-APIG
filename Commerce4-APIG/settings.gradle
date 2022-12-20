@@ -1,0 +1,5 @@
+rootProject.name = 'Commerce4-APIG'
+include ':Commerce4-Common:lib'
+project(':Commerce4-Common:lib').projectDir = new File(settingsDir, '../Commerce4-Common/lib')
+
+

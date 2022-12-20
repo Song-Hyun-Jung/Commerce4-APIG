@@ -1,0 +1,42 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.4'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.digital4'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	
+	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version:'2.9.2'
+	implementation group: 'io.swagger.core.v3', name: 'swagger-core', version:'2.1.10'
+	implementation group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
+	annotationProcessor("org.projectlombok:lombok:1.18.20")
+	
+	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1'
+	implementation fileTree(dir:'libs', include:['*.jar'])
+	
+	// https://mvnrepository.com/artifact/org.postgresql/postgresql
+	//implementation group: 'org.postgresql', name: 'postgresql', version: '42.5.0'
+	
+	implementation project(":Commerce4-Common:lib")
+}
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+tasks.named('test') {
+	useJUnitPlatform()
+}
