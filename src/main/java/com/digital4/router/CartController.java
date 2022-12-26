@@ -46,9 +46,10 @@ public class CartController {
 		ErrorMsg errors = new ErrorMsg();
 		Cart cart_res = new Cart();
 		try {
+			String targetUrl = "Order";
 			String token = req.getHeader("Authorization");
-			String url = "8085/rest/cart/insertCart";
-			String response = HttpConnectionUtils.postRequest(url, cart, token);
+			String requestUrl = "/rest/cart/insertCart";
+			String response = HttpConnectionUtils.postRequest(targetUrl, requestUrl, cart, token);
 			
 			System.out.println("postRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
@@ -72,9 +73,10 @@ public class CartController {
 		
 		try {
 			String token = req.getHeader("Authorization");
-			String url = "8085/rest/cart/getCart"; //파라미터 없음
+			String targetUrl = "Order";
+			String requestUrl = "/rest/cart/getCart"; //파라미터 없음
 			
-			String response = HttpConnectionUtils.getRequest(url, token);
+			String response = HttpConnectionUtils.getRequest(targetUrl, requestUrl, token);
 			System.out.println("getRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
 			List<Cart> cartList = Arrays.asList(objectMapper.readValue(response, Cart [].class));

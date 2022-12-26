@@ -52,8 +52,9 @@ public class ProductController {
 		Product product_res = new Product();
 		String token = request.getHeader("Authorization");
 		try {
-			String url = "8083/rest/product/insertProduct";
-			String response = HttpConnectionUtils.postRequest(url, product, token);
+			String targetUrl = "Product";
+			String requestUrl = "/rest/product/insertProduct";
+			String response = HttpConnectionUtils.postRequest(targetUrl, requestUrl, product, token);
 			
 			System.out.println("postRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
@@ -79,9 +80,10 @@ public class ProductController {
 		
 		try {
 			String token = request.getHeader("Authorization");
-			String url = "8083/rest/product/search/product";
-			url += "/" + URLEncoder.encode(productName, "UTF-8");
-			String response = HttpConnectionUtils.getRequest(url, token);
+			String targetUrl = "Product";
+			String requestUrl = "/rest/product/search/product";
+			requestUrl += "/" + URLEncoder.encode(productName, "UTF-8");
+			String response = HttpConnectionUtils.getRequest(targetUrl, requestUrl, token);
 			System.out.println("getRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
 			Product product = objectMapper.readValue(response, Product.class);
@@ -104,9 +106,10 @@ public class ProductController {
 			
 		try {
 			String token = request.getHeader("Authorization");
-			String url = "8083/rest/product/searchById/product";
-			url += "/" + productId;
-			String response = HttpConnectionUtils.getRequest(url, token);
+			String targetUrl = "Product";
+			String requestUrl = "/rest/product/searchById/product";
+			requestUrl += "/" + productId;
+			String response = HttpConnectionUtils.getRequest(targetUrl, requestUrl, token);
 			System.out.println("getRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
 			Product product = objectMapper.readValue(response, Product.class);
@@ -130,9 +133,10 @@ public class ProductController {
 		
 		try {
 			String token = request.getHeader("Authorization");
-			String url = "8083/rest/product/searchByKeyword";
-			url += "/" + URLEncoder.encode(keyword, "UTF-8");
-			String response = HttpConnectionUtils.getRequest(url, token);
+			String targetUrl = "Product";
+			String requestUrl = "/rest/product/searchByKeyword";
+			requestUrl += "/" + URLEncoder.encode(keyword, "UTF-8");
+			String response = HttpConnectionUtils.getRequest(targetUrl, requestUrl, token);
 			System.out.println("getRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
 			List<Product> product = Arrays.asList(objectMapper.readValue(response, Product [].class));
@@ -155,9 +159,10 @@ public class ProductController {
 		
 		try {
 			String token = request.getHeader("Authorization");
-			String url = "8083/rest/product/searchByCategory";
-			url += "/" + URLEncoder.encode(categoryName, "UTF-8");
-			String response = HttpConnectionUtils.getRequest(url, token);
+			String targetUrl = "Product";
+			String requestUrl = "/rest/product/searchByCategory";
+			requestUrl += "/" + URLEncoder.encode(categoryName, "UTF-8");
+			String response = HttpConnectionUtils.getRequest(targetUrl, requestUrl, token);
 			System.out.println("getRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
 			List<Product> productList = Arrays.asList(objectMapper.readValue(response, Product [].class));

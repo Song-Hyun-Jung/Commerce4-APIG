@@ -51,11 +51,12 @@ public class PersonController {
 		MultiValueMap<String, String> header = new LinkedMultiValueMap<String, String>();
 		ErrorMsg errors = new ErrorMsg();
 		try {
-			String url = "8082/rest/person/logIn";
+			String targetUrl = "Person";
+			String requestUrl = "/rest/person/logIn";
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("loginId", login.getLoginId());
 			map.put("password", login.getPassword());
-			String response = HttpConnectionUtils.postRequest(url, map);
+			String response = HttpConnectionUtils.postRequest(targetUrl, requestUrl, map);
 			System.out.println("postRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
 			Auth auth = objectMapper.readValue(response, Auth.class); //로그인->Auth객체 받아옴
@@ -79,9 +80,10 @@ public class PersonController {
 		
 		try {
 			String token = req.getHeader("Authorization");
-			String url = "8082/rest/person/searchByLoginId";
-			url += "/" + URLEncoder.encode(loginId, "UTF-8");
-			String response = HttpConnectionUtils.getRequest(url, token);
+			String targetUrl = "Person";
+			String requestUrl = "/rest/person/searchByLoginId";
+			requestUrl += "/" + URLEncoder.encode(loginId, "UTF-8");
+			String response = HttpConnectionUtils.getRequest(targetUrl, requestUrl, token);
 			System.out.println("getRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
 			Person person = objectMapper.readValue(response, Person.class);
@@ -103,8 +105,9 @@ public class PersonController {
 		ErrorMsg errors = new ErrorMsg();
 		Person person_res = new Person();
 		try {
-			String url = "8082/rest/person/signUp";
-			String response = HttpConnectionUtils.postRequest(url, person);
+			String targetUrl = "Person";
+			String requestUrl = "/rest/person/signUp";
+			String response = HttpConnectionUtils.postRequest(targetUrl, requestUrl, person);
 			
 			System.out.println("postRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();

@@ -45,10 +45,10 @@ public class AddressController {
 		ErrorMsg errors = new ErrorMsg();	
 		try {
 			String token = req.getHeader("Authorization");
-		
-			String url = "8082/rest/address/search";
-			url += "/" + URLEncoder.encode(addressDetail, "UTF-8");
-			String response = HttpConnectionUtils.getRequest(url, token);
+			String targetUrl = "Person";
+			String requestUrl = "/rest/address/search";
+			requestUrl += "/" + URLEncoder.encode(addressDetail, "UTF-8");
+			String response = HttpConnectionUtils.getRequest(targetUrl, requestUrl, token);
 			System.out.println("getRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
 			Address address = objectMapper.readValue(response, Address.class);
@@ -69,10 +69,10 @@ public class AddressController {
 		ErrorMsg errors = new ErrorMsg();
 		try {
 			String token = req.getHeader("Authorization");
-			
-			String url = "8082/rest/address/searchById";
-			url += "/" + addressId;
-			String response = HttpConnectionUtils.getRequest(url, token);
+			String targetUrl = "Person";
+			String requestUrl = "/rest/address/searchById";
+			requestUrl += "/" + addressId;
+			String response = HttpConnectionUtils.getRequest(targetUrl, requestUrl, token);
 			System.out.println("getRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
 			Address address = objectMapper.readValue(response, Address.class);
@@ -96,11 +96,12 @@ public class AddressController {
 		Address addr_res = new Address();
 		try {
 			String token = req.getHeader("Authorization");
-			String url = "8082/rest/address/insertAddress";
+			String targetUrl = "Person";
+			String requestUrl = "/rest/address/insertAddress";
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("addressId", address.getAddressId());
 			map.put("addressDetail", address.getAddressDetail());
-			String response = HttpConnectionUtils.postRequest(url, map, token);
+			String response = HttpConnectionUtils.postRequest(targetUrl, requestUrl, map, token);
 			System.out.println("postRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
 			addr_res = objectMapper.readValue(response, Address.class);

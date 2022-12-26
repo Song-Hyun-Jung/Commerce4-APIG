@@ -51,8 +51,9 @@ public class PurchaseController {
 		PurchaseResult purchaseResult_res;
 		try {
 			String token = req.getHeader("Authorization");
-			String url = "8085/rest/purchase/purchaseResult";
-			String response = HttpConnectionUtils.postRequest(url, purchase, token);
+			String targetUrl = "Order";
+			String requestUrl = "/rest/purchase/purchaseResult";
+			String response = HttpConnectionUtils.postRequest(targetUrl, requestUrl, purchase, token);
 			
 			System.out.println("postRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
@@ -78,8 +79,9 @@ public class PurchaseController {
 		
 		try {
 			String token = req.getHeader("Authorization");
-			String url = "8085/rest/purchase/purchaseHistory"; //매개변수 없음
-			String response = HttpConnectionUtils.getRequest(url, token);
+			String targetUrl = "Order";
+			String requestUrl = "/rest/purchase/purchaseHistory"; //매개변수 없음
+			String response = HttpConnectionUtils.getRequest(targetUrl, requestUrl, token);
 			System.out.println("getRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
 			List<Purchase> purchaseList = Arrays.asList(objectMapper.readValue(response, Purchase [].class));

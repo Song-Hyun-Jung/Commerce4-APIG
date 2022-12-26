@@ -47,10 +47,10 @@ public class PhoneController {
 		
 		try {
 			String token = req.getHeader("Authorization");
-			
-			String url = "8082/rest/phone/search";
-			url += "/" + URLEncoder.encode(phoneNumber, "UTF-8");
-			String response = HttpConnectionUtils.getRequest(url, token);
+			String targetUrl = "Person";
+			String requestUrl = "/rest/phone/search";
+			requestUrl += "/" + URLEncoder.encode(phoneNumber, "UTF-8");
+			String response = HttpConnectionUtils.getRequest(targetUrl, requestUrl, token);
 			System.out.println("getRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
 			Phone phone = objectMapper.readValue(response, Phone.class);
@@ -73,10 +73,10 @@ public class PhoneController {
 		
 		try {
 			String token = req.getHeader("Authorization");
-			
-			String url = "8082/rest/phone/searchById";
-			url += "/" + phoneId;
-			String response = HttpConnectionUtils.getRequest(url, token);
+			String targetUrl = "Person";
+			String requestUrl = "/rest/phone/searchById";
+			requestUrl += "/" + phoneId;
+			String response = HttpConnectionUtils.getRequest(targetUrl, requestUrl, token);
 			System.out.println("getRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
 			Phone phone = objectMapper.readValue(response, Phone.class);
@@ -99,11 +99,12 @@ public class PhoneController {
 		Phone phone_res = new Phone();
 		try {
 			String token = req.getHeader("Authorization");
-			String url = "8082/rest/phone/insertPhone";
+			String targetUrl = "Person";
+			String requestUrl = "/rest/phone/insertPhone";
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("phoneId",phone.getPhoneId());
 			map.put("phoneNumber", phone.getPhoneNumber());
-			String response = HttpConnectionUtils.postRequest(url, map, token);
+			String response = HttpConnectionUtils.postRequest(targetUrl, requestUrl, map, token);
 			System.out.println("postRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
 			phone_res = objectMapper.readValue(response, Phone.class);

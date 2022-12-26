@@ -50,8 +50,9 @@ public class PrepurchaseController {
 		Prepurchase prepurchase_res;
 		try {
 			String token = req.getHeader("Authorization");
-			String url = "8085/rest/prepurchase/purchaseDetail";
-			String response = HttpConnectionUtils.postRequest(url, prepurchase, token);
+			String targetUrl = "Order";
+			String requestUrl = "/rest/prepurchase/purchaseDetail";
+			String response = HttpConnectionUtils.postRequest(targetUrl, requestUrl, prepurchase, token);
 			
 			System.out.println("postRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
@@ -77,9 +78,10 @@ public class PrepurchaseController {
 		Prepurchase prepurchase_res = new Prepurchase();
 		try {
 			String token = req.getHeader("Authorization");
-			String url = "8085/rest/prepurchase/getPrepurchase";
-			url += "/" + URLEncoder.encode(keyword, "UTF-8");
-			String response = HttpConnectionUtils.getRequest(url, token);
+			String targetUrl = "Order";
+			String requestUrl = "/rest/prepurchase/getPrepurchase";
+			requestUrl += "/" + URLEncoder.encode(keyword, "UTF-8");
+			String response = HttpConnectionUtils.getRequest(targetUrl, requestUrl, token);
 			System.out.println("getRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
 			prepurchase_res = objectMapper.readValue(response, Prepurchase.class);
@@ -104,8 +106,9 @@ public class PrepurchaseController {
 		
 		try {
 			String token = req.getHeader("Authorization");
-			String url = "8085/rest/prepurchase/myPrepurchase"; //매개변수 없음
-			String response = HttpConnectionUtils.getRequest(url, token);
+			String targetUrl = "Order";
+			String requestUrl = "/rest/prepurchase/myPrepurchase"; //매개변수 없음
+			String response = HttpConnectionUtils.getRequest(targetUrl, requestUrl, token);
 			System.out.println("getRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
 			List<Prepurchase> prepurchaseList = Arrays.asList(objectMapper.readValue(response, Prepurchase [].class));

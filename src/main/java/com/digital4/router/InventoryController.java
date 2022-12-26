@@ -46,9 +46,10 @@ public class InventoryController {
 		
 		try {
 			String token = req.getHeader("Authorization");
-			String url = "8084/rest/inventory/search";
-			url += "/" + URLEncoder.encode(productName, "UTF-8");
-			String response = HttpConnectionUtils.getRequest(url, token);
+			String targetUrl = "Inventory";
+			String requestUrl = "/rest/inventory/search";
+			requestUrl += "/" + URLEncoder.encode(productName, "UTF-8");
+			String response = HttpConnectionUtils.getRequest(targetUrl, requestUrl, token);
 			System.out.println("getRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
 			Inventory inventory = objectMapper.readValue(response, Inventory.class);
@@ -70,9 +71,10 @@ public class InventoryController {
 		
 		try {
 			String token = req.getHeader("Authorization");
-			String url = "8084/rest/inventory/searchById";
-			url += "/" + URLEncoder.encode(productId, "UTF-8");
-			String response = HttpConnectionUtils.getRequest(url, token);
+			String targetUrl = "Inventory";
+			String requestUrl = "/rest/inventory/searchById";
+			requestUrl += "/" + URLEncoder.encode(productId, "UTF-8");
+			String response = HttpConnectionUtils.getRequest(targetUrl, requestUrl, token);
 			System.out.println("getRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
 			Inventory inventory = objectMapper.readValue(response, Inventory.class);
@@ -94,8 +96,9 @@ public class InventoryController {
 		Inventory inven_res = new Inventory();
 		try {
 			String token = req.getHeader("Authorization");
-			String url = "8084/rest/inventory/updateQuantity";
-			String response = HttpConnectionUtils.postRequest(url, inventory, token);
+			String targetUrl = "Inventory";
+			String requestUrl = "/rest/inventory/updateQuantity";
+			String response = HttpConnectionUtils.postRequest(targetUrl, requestUrl, inventory, token);
 			
 			System.out.println("postRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
@@ -119,8 +122,9 @@ public class InventoryController {
 		Inventory inven_res = new Inventory();
 		try {
 			String token = req.getHeader("Authorization");
-			String url = "8084/rest/inventory/insertInventory";
-			String response = HttpConnectionUtils.postRequest(url, inventory, token);
+			String targetUrl = "Inventory";
+			String requestUrl = "/rest/inventory/insertInventory";
+			String response = HttpConnectionUtils.postRequest(targetUrl, requestUrl, inventory, token);
 			
 			System.out.println("postRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
@@ -145,8 +149,9 @@ public class InventoryController {
 		Inventory inven_res = new Inventory();
 		try {
 			String token = req.getHeader("Authorization");
-			String url = "8084/rest/inventory/purchaseInven";
-			String response = HttpConnectionUtils.postRequest(url, inventory, token);
+			String targetUrl = "Inventory";
+			String requestUrl = "/rest/inventory/purchaseInven";
+			String response = HttpConnectionUtils.postRequest(targetUrl, requestUrl, inventory, token);
 			
 			System.out.println("postRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();

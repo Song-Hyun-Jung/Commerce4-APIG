@@ -44,8 +44,9 @@ public class AuthController {
 
 		Auth auth_res = new Auth();
 		try {
-			String url = "8081/rest/auth/tokenValid";
-			String response = HttpConnectionUtils.postRequest(url, inputAuth);
+			String targetUrl = "Auth";
+			String requestUrl = "/rest/auth/tokenValid";
+			String response = HttpConnectionUtils.postRequest(targetUrl, requestUrl, inputAuth);
 			
 			System.out.println("postRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
@@ -69,8 +70,9 @@ public class AuthController {
 
 		Auth auth_res = new Auth();
 		try {
-			String url = "8081/rest/auth/generateToken";
-			String response = HttpConnectionUtils.postRequest(url, inputAuth);
+			String targetUrl = "Auth";
+			String requestUrl = "/rest/auth/generateToken";
+			String response = HttpConnectionUtils.postRequest(targetUrl, requestUrl, inputAuth);
 			
 			System.out.println("postRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
@@ -95,8 +97,9 @@ public class AuthController {
 
 		Auth auth_res = new Auth();
 		try {
-			String url = "8081/rest/auth/personInfo";
-			String response = HttpConnectionUtils.postRequest(url, inputAuth);
+			String targetUrl = "Auth";
+			String requestUrl = "/rest/auth/personInfo";
+			String response = HttpConnectionUtils.postRequest(targetUrl, requestUrl, inputAuth);
 			
 			System.out.println("postRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
@@ -121,8 +124,9 @@ public class AuthController {
 
 		Auth auth_res = new Auth();
 		try {
-			String url = "8081/rest/auth/updateToken";
-			String response = HttpConnectionUtils.postRequest(url, inputAuth);
+			String targetUrl = "Auth";
+			String requestUrl = "/rest/auth/updateToken";
+			String response = HttpConnectionUtils.postRequest(targetUrl, requestUrl, inputAuth);
 			
 			System.out.println("postRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();

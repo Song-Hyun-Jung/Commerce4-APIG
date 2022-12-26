@@ -47,9 +47,10 @@ public class CategoryController {
 		
 		try {
 			String token = request.getHeader("Authorization");
-			String url = "8083/rest/product/search/category";
-			url += "/" + URLEncoder.encode(categoryName, "UTF-8");
-			String response = HttpConnectionUtils.getRequest(url, token);
+			String targetUrl = "Product";
+			String requestUrl = "/rest/product/search/category";
+			requestUrl += "/" + URLEncoder.encode(categoryName, "UTF-8");
+			String response = HttpConnectionUtils.getRequest(targetUrl, requestUrl, token);
 			System.out.println("getRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
 			Category category_res = objectMapper.readValue(response, Category.class);
@@ -75,8 +76,9 @@ public class CategoryController {
 		
 		try {
 			String token = request.getHeader("Authorization");
-			String url = "8083/rest/product/insertCategory";
-			String response = HttpConnectionUtils.postRequest(url, category, token);
+			String targetUrl = "Product";
+			String requestUrl = "/rest/product/insertCategory";
+			String response = HttpConnectionUtils.postRequest(targetUrl, requestUrl, category, token);
 			
 			System.out.println("postRequest:" + response);
 			ObjectMapper objectMapper = new ObjectMapper();
