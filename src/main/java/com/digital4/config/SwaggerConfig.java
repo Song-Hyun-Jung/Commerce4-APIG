@@ -21,10 +21,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
+	String host = "commerce.hj.apig:8080";
 	@Bean
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2).consumes(getConsumeContentTypes())
-			      .securityContexts(Arrays.asList(securityContext()))
+			      .host(host)
+				  .securityContexts(Arrays.asList(securityContext()))
 			      .securitySchemes(Arrays.asList(apiKey()))
 			      .produces(getProduceContentTypes()).select().apis(RequestHandlerSelectors.any())
 			      .paths(PathSelectors.ant("/rest/**"))
