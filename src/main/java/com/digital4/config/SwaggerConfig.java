@@ -23,7 +23,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
-	String host = "commerce.hj.apig:8080";
+	String host = "commerce.hj.apig:9080";
 	
 	public ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
