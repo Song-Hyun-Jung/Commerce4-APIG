@@ -21,7 +21,7 @@ pipeline {
       steps{
         script {
           echo "Build image START $BUILD_NUMBER"
-          sh "docker build --no-cache -f APIGVer1Dockerfile -t 192.168.100.12/commerce-hj/commerce-hj-apig:v$BUILD_NUMBER ."
+          sh "docker build --no-cache -f APIGVer2Dockerfile -t 192.168.100.12/commerce-hj/commerce-hj-apig:v$BUILD_NUMBER ."
           echo "Build image END"
         }
       }
