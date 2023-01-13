@@ -24,6 +24,6 @@ RUN gradle build
 
 
 
-CMD ["java","-javaagent:/app/jenniferAgent/jennifer.jar","-Djennifer.config=/app/jenniferAgent/conf/apig.conf", "-jar", "/app/Commerce4-APIG/build/libs/Commerce4-APIG-0.0.1-SNAPSHOT.jar"]
+CMD ["java","-javaagent:/app/jenniferAgent/jennifer.jar","-Djennifer.config=/app/jenniferAgent/conf/apig2.conf", "-jar", "/app/Commerce4-APIG/build/libs/Commerce4-APIG-0.0.1-SNAPSHOT.jar"]
 
 
