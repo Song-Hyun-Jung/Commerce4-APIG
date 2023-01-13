@@ -47,7 +47,7 @@ pipeline {
         script {
           echo "Deploy App START $BUILD_NUMBER"
           sh "/usr/local/bin/kubectl --kubeconfig=/home/jenkins/acloud-client.conf create -f commerce-hj-apig-ver2.yaml"
-          sh "/usr/local/bin/kubectl --kubeconfig=/home/jenkins/acloud-client.conf set image -n commerce-hj deployment/commerce-hj-apig commerce-hj-apig=192.168.100.12/commerce-hj/commerce-hj-apig:v$BUILD_NUMBER"
+          sh "/usr/local/bin/kubectl --kubeconfig=/home/jenkins/acloud-client.conf set image -n commerce-hj deployment/commerce-hj-apig-ver2 commerce-hj-apig=192.168.100.12/commerce-hj/commerce-hj-apig:v$BUILD_NUMBER"
           echo "Deploy App END"
         }
       }
