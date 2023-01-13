@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    acornsoft.io/workload-group-no: "5"
+  labels:
+    app: commerce-hj-apig
+  name: commerce-hj-apig
+  namespace: commerce-hj
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: commerce-hj-apig
+      version: v1
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "true"
+      labels:
+        app: commerce-hj-apig
+        version: v1
+    spec:
+      containers:
+      - image: 192.168.100.12/commerce-hj/commerce-hj-apig:v1
+        imagePullPolicy: Always
+        name: commerce-hj-apig
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: commerce-cocktail-t8ceb0dry5v7
